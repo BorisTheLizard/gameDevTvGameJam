@@ -2458,7 +2458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3093919456128053710, guid: c7cf28c754b09aa448f5eb0d6824c145, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4678903451733085176, guid: c7cf28c754b09aa448f5eb0d6824c145, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2491,6 +2491,19 @@ PrefabInstance:
     - target: {fileID: 5685741736029211425, guid: c7cf28c754b09aa448f5eb0d6824c145, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414049557183120361, guid: c7cf28c754b09aa448f5eb0d6824c145, type: 3}
+      propertyPath: m_text
+      value: 'control:WASD
+
+        Jump/double jump/dash - SPACE
+
+        shooting
+        - left mouse
+
+        Slow time - Q
+
+        Reload - '
       objectReference: {fileID: 0}
     - target: {fileID: 6977863067519870114, guid: c7cf28c754b09aa448f5eb0d6824c145, type: 3}
       propertyPath: m_Pivot.x

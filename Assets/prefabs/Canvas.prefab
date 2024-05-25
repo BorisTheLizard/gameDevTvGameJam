@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5415971326077948555}
   - component: {fileID: 588323352358648740}
   - component: {fileID: 4451664497813290038}
+  - component: {fileID: 4792513622153983308}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -140,6 +141,7 @@ MonoBehaviour:
   mainMenuHolder: {fileID: 5685741736029211425}
   settingsScreenHolder: {fileID: 6478973953320368937}
   gameplayUi: {fileID: 797631499330716349}
+  _timeController: {fileID: 4792513622153983308}
   isMainSreen: 1
 --- !u!82 &588323352358648740
 AudioSource:
@@ -249,6 +251,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a3afe76a0ac0342990b4439a2c89ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4792513622153983308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157360222682985290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82bf72394b50f324da7ef09d5a14383c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSlowTime: 0
 --- !u!1 &743145482236568127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,30 +1265,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gameplay Music is hooked up to CANVAS
+  m_text: 'control:WASD
 
-    Sounds settings is ready, you
-    can adjust the volume of sfx and music separately or use master volume slider
-    for both.
+    Jump/double jump/dash - SPACE
 
+    shooting - left mouse
 
+    Slow
+    time - Q
 
-    Everyone please follow Hierarchy while developing process:
-
-
-    1)Put
-    all of the 3d models in models folder, keep each model in separate folder with
-    textures and materials related to it.
-
-
-    2)Put music and sounds in sounds
-    folder, follow the hierarchy in there as well.
-
-
-
-    Thank you!
-
-'
+    Reload - '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
