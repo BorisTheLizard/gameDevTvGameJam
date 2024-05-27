@@ -12,7 +12,7 @@ public class horseController : MonoBehaviour
 	[SerializeField] GameObject rayCastTransform;
 	[SerializeField] float rayLength;
 	[SerializeField] LayerMask groundLayer;
-
+	[SerializeField] float yOffset = 0.5f;
 	
 
 	private void Update()
@@ -29,7 +29,7 @@ public class horseController : MonoBehaviour
 
 		float clampedPos = Mathf.Clamp(newPos, -xDistance, xDistance);
 
-		horse.transform.localPosition = new Vector3(clampedPos, 0, 0);
+		horse.transform.localPosition = new Vector3(clampedPos, yOffset, 0);
 	}
 /*	private void gravity()
 	{

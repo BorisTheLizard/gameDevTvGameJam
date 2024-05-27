@@ -2133,6 +2133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsToPool:
   - {fileID: 5719632858514457931, guid: 6d4bf7715cf486442a39814f0455ba4c, type: 3}
+  - {fileID: 2134874857356421789, guid: f250c8675dae1a4479cd43dccacfbbf1, type: 3}
   poolSize: 50
 --- !u!4 &1872274387
 Transform:

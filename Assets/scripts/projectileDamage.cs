@@ -11,12 +11,12 @@ public class projectileDamage : MonoBehaviour
     [SerializeField] float timeToWait;
     [SerializeField] float bulletSpeed = 100;
     GameObjectPool pool;
-    //TrailRenderer trail;
+    TrailRenderer trail;
 
     private void Awake()
     {
         pool = FindObjectOfType<GameObjectPool>();
-        //trail = GetComponent<TrailRenderer>();
+        trail = GetComponent<TrailRenderer>();
     }
 
     private void OnEnable()
@@ -26,7 +26,7 @@ public class projectileDamage : MonoBehaviour
     private void OnDisable()
     {
         StopAllCoroutines();
-       // trail.Clear();
+        trail.Clear();
     }
 
     private void Update()
@@ -80,6 +80,20 @@ public class projectileDamage : MonoBehaviour
                     }
                 }
                 pool.ReturnObject(this.gameObject);*/
+                break;
+            case "destr":
+                GameObject destrObjEffect = pool.GetObject(1);
+                if (destrObjEffect != null)
+                {
+                    destrObjEffect.SetActive(false);
+                    destrObjEffect.transform.position = transform.position;
+                    destrObjEffect.transform.rotation = transform.rotation;
+                    destrObjEffect.SetActive(true);
+                }
+
+                other.GetComponent<destroyObjectScript>().destroyIt();
+                other.GetComponent<destroyObjectScript>().gameObject.GetComponent<BoxCollider>().enabled = false;
+
                 break;
         }
     }
