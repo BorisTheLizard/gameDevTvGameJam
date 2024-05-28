@@ -24,6 +24,11 @@ public class playerPLcontroller : MonoBehaviour
     public float gravity=10f;
     public bool makeADoubleJump = false;
 
+
+    [SerializeField] Animator anim;
+    public float CCSpeed;
+    [SerializeField] Vector3 lastPosition;
+
     void Start()
     {
         mainCamera = FindObjectOfType<Camera>();
@@ -32,6 +37,8 @@ public class playerPLcontroller : MonoBehaviour
 
     private void Update()
 	{
+        CalculateSpeed();
+
         if (canControl)
         {
             playerTransform();
@@ -53,6 +60,11 @@ public class playerPLcontroller : MonoBehaviour
         if (!cc.isGrounded)
         {
             applyGravity();
+            anim.SetBool("inAir", true);
+        }
+		else
+		{
+            anim.SetBool("inAir", !true);
         }
     }
 
@@ -80,6 +92,7 @@ public class playerPLcontroller : MonoBehaviour
         {
             makeADoubleJump = true;
             moveVelocity.y = jumpForce;
+            anim.SetTrigger("jump");
             //jumpAudioSource.clip = jumpClip[Random.Range(0, jumpClip.Length)];
             //jumpAudioSource.Play();
         }
@@ -88,6 +101,7 @@ public class playerPLcontroller : MonoBehaviour
     {
         if (makeADoubleJump & Input.GetKeyDown(KeyCode.Space))
         {
+            anim.SetTrigger("jump");
             moveVelocity.y = 0;
             moveVelocity.y = jumpForce * 0.75f;
             makeADoubleJump = false;
@@ -138,5 +152,18 @@ public class playerPLcontroller : MonoBehaviour
             Debug.DrawRay(headColCastPoint.transform.position, headColCastPoint.transform.up, Color.red, 1);
             moveVelocity.y = -1;
 		}
+	}
+
+    private void CalculateSpeed()
+    {
+        CCSpeed = Mathf.Lerp(CCSpeed, (transform.position - lastPosition).magnitude / Time.unscaledDeltaTime, 6f);
+        lastPosition = transform.position;
+
+        anim.SetFloat("moveSpeed", CCSpeed);
+    }
+
+    private void animationController()
+	{
+
 	}
 }
