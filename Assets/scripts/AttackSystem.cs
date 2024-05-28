@@ -4,22 +4,17 @@ using UnityEngine;
 
 public class AttackSystem : MonoBehaviour
 {
-	//[SerializeField] Animator anim;
 	float shootingSpeed;
 	[SerializeField] float maxShootingSpeed = 0.5f;
-	[SerializeField] GameObject hitCollider;
 	GameObjectPool pool;
 	[SerializeField] int objectIndex;
 	public int bulletsInClip = 5;
 	[SerializeField] Transform shootingPoint;
-	[SerializeField] ParticleSystem slash;
+
 	AudioSource audioSource;
 	[SerializeField] AudioClip click;
 	[SerializeField] AudioClip Shoot;
-	[SerializeField] AudioClip meleAttackClip;
-	[SerializeField] string[] batonAttacks;
-	private bool batonAttacking = false;
-	[SerializeField] ParticleSystem muzzleFlash;
+
 	//meleHitCollider
 	[SerializeField] AudioSource meleHitCol;
 
@@ -27,7 +22,6 @@ public class AttackSystem : MonoBehaviour
 	{
 		pool = FindObjectOfType<GameObjectPool>();
 		audioSource = GetComponent<AudioSource>();
-		batonAttacks = new string[] { "baton", "baton1", "baton2" };
 	}
 
 	private void Update()
@@ -36,11 +30,11 @@ public class AttackSystem : MonoBehaviour
 		{
 			shooting();
 		}
-/*		if (Input.GetKeyDown(KeyCode.Mouse1))
+		if (Input.GetKeyDown(KeyCode.Mouse1))
 		{
-			if(!batonAttacking)
-			StartCoroutine(meleAttack());
-		}*/
+			//reload
+			Debug.Log("Reload");
+		}
 	}
 	private void shooting()
 	{
@@ -68,24 +62,4 @@ public class AttackSystem : MonoBehaviour
 			}
 		}
 	}
-/*	IEnumerator meleAttack()
-	{
-		if (!batonAttacking)
-		{
-			string playAnim = batonAttacks[Random.Range(0, batonAttacks.Length)];
-			//anim.SetTrigger(playAnim);
-			batonAttacking = true;
-		}
-		if (!meleHitCol.isPlaying)
-		{
-			meleHitCol.clip = null;
-		}
-		slash.Play();
-		audioSource.pitch = Random.Range(0.7f, 1.2f);
-		audioSource.PlayOneShot(meleAttackClip);
-		hitCollider.SetActive(true);
-		yield return new WaitForSeconds(0.2f);
-		hitCollider.SetActive(false);
-		batonAttacking = false;
-	}*/
 }

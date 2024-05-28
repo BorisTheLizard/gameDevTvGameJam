@@ -137,7 +137,6 @@ public class playerController : MonoBehaviour
 
     void DashAnim()
 	{
-        Debug.Log(move.x);
         if(move.x>0.1f && move.z ==0)
 		{
             anim.SetTrigger("rightDash");

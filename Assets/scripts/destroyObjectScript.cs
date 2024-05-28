@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class destroyObjectScript : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class destroyObjectScript : MonoBehaviour
 
 	public void destroyIt()
 	{
+		this.gameObject.GetComponent<NavMeshObstacle>().enabled = false;
 		foreach (var item in bodyPart)
 		{
 			item.SetActive(false);
@@ -20,6 +22,7 @@ public class destroyObjectScript : MonoBehaviour
 			item.GetComponent<Rigidbody>().isKinematic = false;
 			item.GetComponent<Rigidbody>().useGravity = true;
 		}
+
 		if (!isCounting)
 		{
 			isCounting = true;
@@ -27,13 +30,12 @@ public class destroyObjectScript : MonoBehaviour
 
 			IEnumerator countTosettle()
 			{
-				yield return new WaitForSeconds(5);
+				yield return new WaitForSeconds(3.5f);
 				foreach (var item in destructParts)
 				{
 					item.GetComponent<Rigidbody>().isKinematic = !false;
 					item.GetComponent<Rigidbody>().useGravity = !true;
 					item.GetComponent<BoxCollider>().isTrigger = true;
-
 					this.enabled = false;
 				}
 			}

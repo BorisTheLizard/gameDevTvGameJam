@@ -50,7 +50,7 @@ public class projectileDamage : MonoBehaviour
                 pool.ReturnObject(this.gameObject);
                 break;
 
-            case "player":
+            case "Player":
                 //Damage Player
                 //other.gameObject.GetComponent<HealthSystem>().TakeDamage(damageAmount);
                 //Invoke effect from pool
@@ -103,7 +103,7 @@ public class projectileDamage : MonoBehaviour
     IEnumerator returnToPoolTimer()
     {
         yield return new WaitForSeconds(timeToWait);
-        //trail.Clear();
+        trail.Clear();
         pool.ReturnObject(this.gameObject);
     }
 }
