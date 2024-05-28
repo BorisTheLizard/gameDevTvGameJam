@@ -34,11 +34,12 @@ public class topDownAI : MonoBehaviour
     public GameObject patrollingPoint;
 
     [SerializeField] GameObject shootingPoint;
+    bool isAttackActing=false;
+    bool isRight;
     private void Awake()
     {
         pool = FindObjectOfType<GameObjectPool>();
     }
-
     private void Start()
 	{
         player = GameObject.Find("PlayerTD");
@@ -54,13 +55,14 @@ public class topDownAI : MonoBehaviour
         
         timeToWait = maxTimeToWait;
     }
-
 	private void Update()
 	{
         logick();
     }
-
-
+	private void FixedUpdate()
+	{
+        animationController();
+    }
 	void logick()
 	{
         switch (currentState)
@@ -110,8 +112,12 @@ public class topDownAI : MonoBehaviour
 
                 agent.velocity = Vector3.zero;
 
+				if (!isAttackActing)
+				{
+                    StartCoroutine(callAttackActions(2));
+				}
 
-                    shooting();
+                shooting();
                 
 
                 if (fov.seePlayer)
@@ -136,7 +142,6 @@ public class topDownAI : MonoBehaviour
                 break;
         }
     }
-
     void shooting()
 	{
         if (Time.time > timeToWait)
@@ -173,6 +178,95 @@ public class topDownAI : MonoBehaviour
         MoveToRandomSpot();
         inWait = false;
     }
+    public void heardNoise()
+    {
+		if (currentState == "idle")
+		{
+            StartCoroutine(FastRotateCoroutine(player.transform.position, 0.1f));
+            currentState = "chase";
+		}
+    }
+    public IEnumerator FastRotateCoroutine(Vector3 lookAtTransform, float rotationTime) //rotates agent to face something (noise or player)
+    {
+        Vector3 lookTransform = new Vector3(lookAtTransform.x, transform.position.y, lookAtTransform.z);
+        Quaternion currentRotation = transform.rotation;
+        Quaternion targetRotation = Quaternion.LookRotation(lookTransform - transform.position);
 
+        float elapsedTime = 0f;
+        while (elapsedTime < rotationTime)
+        {
+            transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, elapsedTime / rotationTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        transform.rotation = targetRotation;
+    }
+    public void animationController()
+	{
+        float moveingSpeed = agent.velocity.magnitude;
+        anim.SetFloat("moveSpeed", moveingSpeed);
+    }
+
+    IEnumerator callAttackActions(float timeToWait)
+	{
+        isAttackActing = true;
+        AttackActions();
+        yield return new WaitForSeconds(timeToWait);
+        isAttackActing = false;
+
+	}
+    private void AttackActions()
+    {
+        int actionNum = Random.Range(1, 4);
+
+        //croach right
+        if (actionNum == 2)
+        {
+            isRight = true;
+            StartCoroutine(PushAsideCoroutine(isRight, 1.7f, 8, false));
+        }
+
+        //croach left
+        if (actionNum == 3)
+        {
+            isRight = !true;
+            StartCoroutine(PushAsideCoroutine(isRight, 1.7f, 8, false));
+        }
+    }
+
+    IEnumerator PushAsideCoroutine(bool right, float duration, float distance, bool pushForward) //push agent aside when trigger colides with other agent
+    {
+        float timer = 0.0f;
+        Vector3 originalPosition = agent.transform.position;
+        Vector3 sideMovement = (right ? transform.right : -transform.right) * distance;
+
+        //Vector3 targetPosition = originalPosition + sideMovement;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            float progress = timer / duration;
+
+            // Calculate the side movement
+
+            Vector3 sideOffset = Vector3.Lerp(Vector3.zero, sideMovement, progress);
+
+            // Calculate the forward movement if needed
+            Vector3 forwardOffset = Vector3.zero;
+            if (pushForward)
+            {
+                // Calculate the forward movement based on the side movement
+                forwardOffset = Vector3.Lerp(Vector3.zero, agent.transform.forward * distance, progress);
+            }
+
+            // Calculate the new position considering side and forward movement
+            Vector3 newPosition = originalPosition + sideOffset + forwardOffset;
+
+            // Move the agent to the new position
+            agent.Move(newPosition - agent.transform.position);
+
+            yield return null;
+        }
+    }
 }
 

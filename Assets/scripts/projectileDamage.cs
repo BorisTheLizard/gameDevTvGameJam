@@ -34,8 +34,6 @@ public class projectileDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
-
         switch (other.gameObject.tag)
         {
             case "obstacles":
@@ -55,7 +53,7 @@ public class projectileDamage : MonoBehaviour
             case "Player":
 
                 //Damage Player
-                //other.gameObject.GetComponent<HealthSystem>().TakeDamage(damageAmount);
+                other.gameObject.GetComponent<healthSystem>().TakeDamage(damageAmount);
 
                 GameObject PlayerhitImpact = pool.GetObject(3);
 
@@ -73,6 +71,7 @@ public class projectileDamage : MonoBehaviour
 
             case "enemy":
 
+                other.gameObject.GetComponent<healthSystem>().TakeDamage(damageAmount);
                 GameObject PlayerhitImpact1 = pool.GetObject(3);
 
                 if (PlayerhitImpact1 != null)

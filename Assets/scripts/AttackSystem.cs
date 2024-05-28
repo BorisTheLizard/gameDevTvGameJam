@@ -15,8 +15,10 @@ public class AttackSystem : MonoBehaviour
 	[SerializeField] AudioClip click;
 	[SerializeField] AudioClip Shoot;
 
-	//meleHitCollider
-	[SerializeField] AudioSource meleHitCol;
+
+
+	[SerializeField] float noiseRadius=20;
+	[SerializeField] LayerMask enemyLayer;
 
 	private void Start()
 	{
@@ -55,10 +57,23 @@ public class AttackSystem : MonoBehaviour
 					obj.SetActive(true);
 				}
 				bulletsInClip--;
+				makeNoise();
 			}
 			else
 			{
 				audioSource.PlayOneShot(click);
+			}
+		}
+	}
+	private void makeNoise()
+	{
+		Collider[] col = Physics.OverlapSphere(transform.position, noiseRadius, enemyLayer);
+
+		foreach (var item in col)
+		{
+			if (item.GetComponent<topDownAI>() != null)
+			{
+				item.GetComponent<topDownAI>().heardNoise();
 			}
 		}
 	}
