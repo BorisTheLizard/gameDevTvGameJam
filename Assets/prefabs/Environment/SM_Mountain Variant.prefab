@@ -68,21 +68,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Mountain Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b7d3240bc7d94e946ab939199f1fe889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b7d3240bc7d94e946ab939199f1fe889, type: 3}
+      propertyPath: m_TagString
+      value: obstacles
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b7d3240bc7d94e946ab939199f1fe889, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 485400667120317584}
+      addedObject: {fileID: 828314765647056182}
   m_SourcePrefab: {fileID: 100100000, guid: b7d3240bc7d94e946ab939199f1fe889, type: 3}
 --- !u!1 &8210966585088570973 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b7d3240bc7d94e946ab939199f1fe889, type: 3}
   m_PrefabInstance: {fileID: 9021377778813192972}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &485400667120317584
-BoxCollider:
+--- !u!64 &828314765647056182
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -99,6 +107,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 8.354283, y: 8.728368, z: 9.576134}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6358727499526825851, guid: b7d3240bc7d94e946ab939199f1fe889, type: 3}
