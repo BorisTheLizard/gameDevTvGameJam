@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class projectileDamage : MonoBehaviour
 {
-    [SerializeField] int wallHitImpactIndex;
-    [SerializeField] int HitImpactIndex;
     [SerializeField] int damageAmount;
 
     [SerializeField] float timeToWait;
@@ -36,25 +34,31 @@ public class projectileDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.gameObject.tag);
+
         switch (other.gameObject.tag)
         {
             case "obstacles":
-                GameObject hitImpact = pool.GetObject(wallHitImpactIndex);
+
+                GameObject hitImpact = pool.GetObject(2);
+
                 if (hitImpact != null)
                 {
                     hitImpact.SetActive(false);
                     hitImpact.transform.position = transform.position;
-                    hitImpact.transform.rotation = transform.rotation;
                     hitImpact.SetActive(true);
                 }
                 pool.ReturnObject(this.gameObject);
+
                 break;
 
             case "Player":
+
                 //Damage Player
                 //other.gameObject.GetComponent<HealthSystem>().TakeDamage(damageAmount);
-                //Invoke effect from pool
-                GameObject PlayerhitImpact = pool.GetObject(HitImpactIndex);
+
+                GameObject PlayerhitImpact = pool.GetObject(3);
+
                 if (PlayerhitImpact != null)
                 {
                     PlayerhitImpact.SetActive(false);
@@ -62,25 +66,28 @@ public class projectileDamage : MonoBehaviour
                     PlayerhitImpact.transform.rotation = transform.rotation;
                     PlayerhitImpact.SetActive(true);
                 }
-                //Return bullet in pool
+
                 pool.ReturnObject(this.gameObject);
+
                 break;
 
             case "enemy":
-/*                if (other.GetComponent<HealthSystem>() != null)
+
+                GameObject PlayerhitImpact1 = pool.GetObject(3);
+
+                if (PlayerhitImpact1 != null)
                 {
-                    other.gameObject.GetComponent<HealthSystem>().TakeDamage(damageAmount);
-                    GameObject EnemyhitImpact = pool.GetObject(HitImpactIndex);
-                    if (EnemyhitImpact != null)
-                    {
-                        EnemyhitImpact.SetActive(false);
-                        EnemyhitImpact.transform.position = transform.position;
-                        EnemyhitImpact.transform.rotation = transform.rotation;
-                        EnemyhitImpact.SetActive(true);
-                    }
+                    PlayerhitImpact1.SetActive(false);
+                    PlayerhitImpact1.transform.position = transform.position;
+                    PlayerhitImpact1.transform.rotation = transform.rotation;
+                    PlayerhitImpact1.SetActive(true);
                 }
-                pool.ReturnObject(this.gameObject);*/
+
+                pool.ReturnObject(this.gameObject);
+
                 break;
+
+
             case "destr":
                 GameObject destrObjEffect = pool.GetObject(1);
                 if (destrObjEffect != null)

@@ -37,20 +37,21 @@ public class playerController : MonoBehaviour
         _timeController = FindObjectOfType<timeController>();
     }
 
-    void Update()
-    {
-        Aim();
-        PlayerMove();
-
+	private void FixedUpdate()
+	{
         if (!_timeController.GamePaused)
         {
             CalculateSpeed();
         }
+    }
 
-        animationController();
+	void Update()
+    {
+        Aim();
+        PlayerMove();
 
-        CCSpeed = Mathf.Lerp(CCSpeed, (transform.position - lastPosition).magnitude / Time.deltaTime, 0.75f);
-        lastPosition = transform.position;
+
+		animationController();
     }
 
     public void PlayerMove()

@@ -30,6 +30,9 @@ public class topDownAI : MonoBehaviour
 
     GameObjectPool pool;
 
+    public bool isPatroling;
+    public GameObject patrollingPoint;
+
     [SerializeField] GameObject shootingPoint;
     private void Awake()
     {
@@ -39,7 +42,16 @@ public class topDownAI : MonoBehaviour
     private void Start()
 	{
         player = GameObject.Find("PlayerTD");
-        MoveToRandomSpot();
+
+		if (isPatroling)
+		{
+            agent.SetDestination(patrollingPoint.transform.position);
+		}
+		else
+		{
+            MoveToRandomSpot();
+        }
+        
         timeToWait = maxTimeToWait;
     }
 
@@ -55,11 +67,14 @@ public class topDownAI : MonoBehaviour
         {
             case "idle":
 
-                if (!agent.pathPending && agent.remainingDistance < 7f)
-                {
-                    if (!inWait)
+				if (!isPatroling)
+				{
+                    if (!agent.pathPending && agent.remainingDistance < 7f)
                     {
-                        StartCoroutine(waitBeforeGotoNewPoint());
+                        if (!inWait)
+                        {
+                            StartCoroutine(waitBeforeGotoNewPoint());
+                        }
                     }
                 }
 
@@ -67,6 +82,7 @@ public class topDownAI : MonoBehaviour
                 {
                     currentState = "chase";
                 }
+
 
                 break;
 
@@ -76,7 +92,7 @@ public class topDownAI : MonoBehaviour
                 float distance = Vector3.Distance(transform.position, player.transform.position);
                 agent.SetDestination(player.transform.position);
 
-                if (fov.seePlayer && distance < 10)
+                if (fov.seePlayer && distance < 14)
                 {
                     currentState = "attack";
                 }
@@ -105,7 +121,7 @@ public class topDownAI : MonoBehaviour
                     float distance1 = Vector3.Distance(transform.position, player.transform.position);
 
 
-                    if (distance1 > 12)
+                    if (distance1 > 16)
                     {
                   
                         currentState = "chase";
