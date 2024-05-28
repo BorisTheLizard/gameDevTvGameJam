@@ -28,7 +28,7 @@ Material:
     - _Color_Variation_Strength: 0.97
     - _Scale: 0.2
     m_Colors:
-    - _Base_Color: {r: 0.8113208, g: 0.5886846, b: 0.2028302, a: 0}
+    - _Base_Color: {r: 0.6886792, g: 0.5035155, b: 0.18516374, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1081386047567541283
 MonoBehaviour:
