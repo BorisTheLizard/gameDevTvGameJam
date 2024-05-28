@@ -266,6 +266,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSlowTime: 0
+  mainEffect: {fileID: 0}
+  slowTimeEffect: {fileID: 0}
+  effectChangeSpeed: 0.05
 --- !u!114 &315537192192350620
 MonoBehaviour:
   m_ObjectHideFlags: 0

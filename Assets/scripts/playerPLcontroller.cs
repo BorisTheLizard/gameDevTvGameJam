@@ -28,16 +28,21 @@ public class playerPLcontroller : MonoBehaviour
     [SerializeField] Animator anim;
     public float CCSpeed;
     [SerializeField] Vector3 lastPosition;
+    timeController _timeController;
 
     void Start()
     {
         mainCamera = FindObjectOfType<Camera>();
+        _timeController = FindObjectOfType<timeController>();
     }
 
 
     private void Update()
 	{
-        CalculateSpeed();
+		if (!_timeController.GamePaused)
+		{
+            CalculateSpeed();
+        }
 
         if (canControl)
         {
