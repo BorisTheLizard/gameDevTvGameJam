@@ -14,7 +14,7 @@ public class destroyObjEffectPushRB : MonoBehaviour
 
 		IEnumerator pushWait()
 		{
-			yield return new WaitForSeconds(0.15f);
+			yield return new WaitForSeconds(0.05f);
 
 			Collider[] colliders = Physics.OverlapSphere(transform.position, radius, destructableLayer);
 

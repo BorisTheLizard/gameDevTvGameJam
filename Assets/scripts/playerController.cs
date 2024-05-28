@@ -16,6 +16,7 @@ public class playerController : MonoBehaviour
     //dash
     [SerializeField] float dashTime;
     [SerializeField] float dashSpeed;
+    bool isDashing;
    // [SerializeField] TrailRenderer trail;
     float dashCoolDown;
     [SerializeField] float maxDashCoolDown = 1f;
@@ -39,6 +40,8 @@ public class playerController : MonoBehaviour
     {
         Aim();
         PlayerMove();
+        CalculateSpeed();
+        animationController();
 
         CCSpeed = Mathf.Lerp(CCSpeed, (transform.position - lastPosition).magnitude / Time.deltaTime, 0.75f);
         lastPosition = transform.position;
@@ -87,14 +90,63 @@ public class playerController : MonoBehaviour
     }
     IEnumerator Dash()
     {
+        isDashing = true;
+        speedController();
         float startTime = Time.time;
-
+        DashAnim();
         while (Time.time < startTime + dashTime)
         {
             //trail.enabled = true;
             cc.Move(move.normalized * dashSpeed * Time.deltaTime);
             yield return null;
         }
+        isDashing = !true;
+        speedController();
         //trail.enabled = false;
+    }
+
+    void animationController()
+	{
+       
+	}
+    void speedController()
+	{
+		if (isDashing)
+		{
+            moveSpeed = 40;
+		}
+		else
+		{
+            moveSpeed = 10;
+		}
+	}
+
+    private void CalculateSpeed()
+    {
+        CCSpeed = Mathf.Lerp(CCSpeed, (transform.position - lastPosition).magnitude / Time.unscaledDeltaTime, 6f);
+        lastPosition = transform.position;
+
+        anim.SetFloat("moveSpeed", CCSpeed);
+    }
+
+    void DashAnim()
+	{
+        Debug.Log(move.x);
+        if(move.x>0.1f && move.z ==0)
+		{
+            anim.SetTrigger("rightDash");
+		}
+        if(move.x < -0.1f && move.z == 0)
+		{
+            anim.SetTrigger("leftDash");
+        }
+		if (move.z > 0.1)
+		{
+            anim.SetTrigger("forwardDash");
+		}
+        if (move.z < -0.1)
+        {
+            anim.SetTrigger("backDash");
+        }
     }
 }

@@ -94,6 +94,8 @@ public class projectileDamage : MonoBehaviour
                 other.GetComponent<destroyObjectScript>().destroyIt();
                 other.GetComponent<destroyObjectScript>().gameObject.GetComponent<BoxCollider>().enabled = false;
 
+                pool.ReturnObject(this.gameObject);
+
                 break;
         }
     }
