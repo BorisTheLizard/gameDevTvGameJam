@@ -22,7 +22,7 @@ public class playerController : MonoBehaviour
     [SerializeField] float maxDashCoolDown = 1f;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip[] dashClips;
-
+    timeController _timeController;
 
     public float CCSpeed;
     [SerializeField] Vector3 lastPosition;
@@ -34,13 +34,19 @@ public class playerController : MonoBehaviour
     {
         mainCamera = FindObjectOfType<Camera>();
         cc = GetComponent<CharacterController>();
+        _timeController = FindObjectOfType<timeController>();
     }
 
     void Update()
     {
         Aim();
         PlayerMove();
-        CalculateSpeed();
+
+        if (!_timeController.GamePaused)
+        {
+            CalculateSpeed();
+        }
+
         animationController();
 
         CCSpeed = Mathf.Lerp(CCSpeed, (transform.position - lastPosition).magnitude / Time.deltaTime, 0.75f);
