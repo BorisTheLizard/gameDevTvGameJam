@@ -22,11 +22,31 @@ public class healthSystem : MonoBehaviour
     [SerializeField] Animator deathAnimator;
     minusHealthVisual minusHealth;
     timeController _timeController;
+
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip[] deathSounds;
+    [SerializeField] GameObject coocedScreen;
+
+    [SerializeField] bool isTopDown;
+    [SerializeField] bool notRunner;
+    playerController _TDcontroller;
+    AttackSystem attackSystem;
+
+
     void Start()
     {
         Health = MaxHealth;
         minusHealth = FindObjectOfType<minusHealthVisual>();
         _timeController = FindObjectOfType<timeController>();
+
+		if (isTopDown)
+		{
+            _TDcontroller = FindObjectOfType<playerController>();
+		}
+		if (notRunner)
+		{
+            attackSystem = FindObjectOfType<AttackSystem>();
+		}
     }
 
     public void TakeDamage(int damage)
@@ -35,6 +55,32 @@ public class healthSystem : MonoBehaviour
 		{
             Health -= damage;
             minusHealth.DestroyLastCounted();
+
+			if (Health <= 0)
+			{
+				if (!isDead)
+				{
+                    isDead = true;
+                    _timeController.setTime(1);
+
+
+                    if (isTopDown)
+					{
+                        _TDcontroller.enabled = false;
+					}
+
+					if (notRunner)
+					{
+                        attackSystem.enabled = false;
+					}
+					else
+					{
+                        //IF IT"S RUNNER!!!!!!!
+					}
+
+                    coocedScreen.SetActive(true);
+				}
+			}
         }
 
 		if (isEnemy)
@@ -50,6 +96,8 @@ public class healthSystem : MonoBehaviour
             {
                 if (!isDead)
                 {
+                    _audioSource.clip = deathSounds[Random.Range(0, deathSounds.Length)];
+                    _audioSource.Play();
                     isDead = true;
                     ai.StopAllCoroutines();
                     ai.enabled = false;

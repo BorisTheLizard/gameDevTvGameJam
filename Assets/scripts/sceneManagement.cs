@@ -11,10 +11,21 @@ public class sceneManagement : MonoBehaviour
         SceneManager.LoadScene(1);
 	}
 
-    void LoadNextLevel()
+    public void LoadNextLevel()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
         SceneManager.LoadScene(nextSceneIndex);
+    }
+
+    public void restartScene()
+	{
+        StartCoroutine(ReloadLevel());
+	}
+    IEnumerator ReloadLevel()
+    {
+        yield return new WaitForSeconds(2.8f);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 }

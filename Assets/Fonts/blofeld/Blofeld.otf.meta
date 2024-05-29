@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 65050f99c5ea02843932e74392c14ce2
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Blofeld
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 54419c2d0e9db704283d71f59afc2199, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

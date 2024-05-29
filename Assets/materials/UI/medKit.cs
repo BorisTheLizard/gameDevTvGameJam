@@ -5,7 +5,7 @@ using UnityEngine;
 public class medKit : MonoBehaviour
 {
 	[SerializeField] int healAmount = 3;
-	//[SerializeField] AudioClip eatCandySound;
+	[SerializeField] AudioClip eatSound;
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -18,7 +18,7 @@ public class medKit : MonoBehaviour
 				{
 					other.GetComponent<healthSystem>().Health = other.GetComponent<healthSystem>().MaxHealth;
 				}
-				//AudioSource.PlayClipAtPoint(eatCandySound, transform.position);
+				other.GetComponent<AudioSource>().PlayOneShot(eatSound);
 				Destroy(this.gameObject);
 			}
 		}

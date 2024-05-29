@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class AttackSystem : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class AttackSystem : MonoBehaviour
 
 	[SerializeField] float noiseRadius=20;
 	[SerializeField] LayerMask enemyLayer;
+	[SerializeField] CinemachineImpulseSource _source;
 
 	bool isReloading;
 
@@ -49,6 +51,7 @@ public class AttackSystem : MonoBehaviour
 			if (bulletsInClip > 0)
 			{
 				//muzzleFlash.Play();
+				_source.GenerateImpulse();
 				shootingSpeed = Time.time + maxShootingSpeed;
 				//audioSource.pitch = Random.Range(0.9f, 1.1f);
 				//audioSource.PlayOneShot(Shoot);
