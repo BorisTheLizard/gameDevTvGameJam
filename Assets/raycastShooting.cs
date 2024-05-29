@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class raycastShooting : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class raycastShooting : MonoBehaviour
     public int bulletsInClip = 5;
     public int maxBulletsInClip = 6;
     bool isReloading;
+    CinemachineImpulseSource impulse;
 
     private void Awake()
     {
@@ -24,6 +26,8 @@ public class raycastShooting : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         bulletsInClip = maxBulletsInClip;
+
+        impulse = GetComponent<CinemachineImpulseSource>();
     }
 
     void Update()
@@ -46,7 +50,7 @@ public class raycastShooting : MonoBehaviour
     void Shoot()
     {
         bulletsInClip--;
-
+        impulse.GenerateImpulse();
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
