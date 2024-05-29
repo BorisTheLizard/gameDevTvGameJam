@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc873093f64c384386a79cd00656959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 11
+  viewRadius: 15
   viewAngle: 144
   visibleTargets: []
   playerLayer:

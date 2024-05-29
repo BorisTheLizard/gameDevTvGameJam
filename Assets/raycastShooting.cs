@@ -10,29 +10,50 @@ public class raycastShooting : MonoBehaviour
 
     GameObjectPool pool;
 
+    AudioSource audioSource;
+    [SerializeField] AudioClip[] ShootClips;
+    [SerializeField] AudioClip reloadSound;
+
+    public int bulletsInClip = 5;
+    public int maxBulletsInClip = 6;
+    bool isReloading;
+
     private void Awake()
     {
         pool = FindObjectOfType<GameObjectPool>();
+        audioSource = GetComponent<AudioSource>();
+
+        bulletsInClip = maxBulletsInClip;
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) // Check if left mouse button is clicked
         {
-            Shoot();
+
+            if (bulletsInClip > 0)
+            {
+                Shoot();
+            }
+        }
+
+        if (!isReloading)
+        {
+            reloadGun();
         }
     }
 
     void Shoot()
     {
+        bulletsInClip--;
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Vector3 shootingDirection = ray.direction;
         RaycastHit hit;
 
         // Draw the ray in the scene view for debugging purposes
-        Debug.DrawRay(shootingPoint.transform.position, shootingDirection * shootingRange, Color.red, 2f);
+        Debug.DrawRay(Camera.main.transform.position, ray.direction * shootingRange, Color.red, 2f);
 
-        if (Physics.Raycast(shootingPoint.transform.position, shootingDirection, out hit, shootingRange,~ignoreLayerMask))
+        if (Physics.Raycast(ray, out hit, shootingRange, ~ignoreLayerMask))
         {
             Debug.Log("Hit: " + hit.collider.name);
 
@@ -59,6 +80,26 @@ public class raycastShooting : MonoBehaviour
                     destrObjEffect.SetActive(false);
                     destrObjEffect.transform.position = hit.point;
                     destrObjEffect.SetActive(true);
+                }
+            }
+        }
+    }
+
+    void reloadGun()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (bulletsInClip < maxBulletsInClip)
+            {
+                audioSource.PlayOneShot(reloadSound);
+                isReloading = true;
+                StartCoroutine(reload());
+
+                IEnumerator reload()
+                {
+                    yield return new WaitForSeconds(1f);
+                    bulletsInClip = maxBulletsInClip;
+                    isReloading = false;
                 }
             }
         }

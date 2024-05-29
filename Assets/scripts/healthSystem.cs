@@ -20,10 +20,13 @@ public class healthSystem : MonoBehaviour
     [SerializeField] CapsuleCollider col;
     [SerializeField] Animator anim;
     [SerializeField] Animator deathAnimator;
-
+    minusHealthVisual minusHealth;
+    timeController _timeController;
     void Start()
     {
         Health = MaxHealth;
+        minusHealth = FindObjectOfType<minusHealthVisual>();
+        _timeController = FindObjectOfType<timeController>();
     }
 
     public void TakeDamage(int damage)
@@ -31,12 +34,17 @@ public class healthSystem : MonoBehaviour
 		if (isPlayer)
 		{
             Health -= damage;
-
+            minusHealth.DestroyLastCounted();
         }
 
 		if (isEnemy)
 		{
             Health -= damage;
+
+			if (ai.currentState == "idle")
+			{
+                ai.currentState = "chase";
+			}
   
             if (Health <= 0)
             {
@@ -51,6 +59,7 @@ public class healthSystem : MonoBehaviour
                     anim.gameObject.SetActive(false);
                     deathAnimator.gameObject.SetActive(true);
                     deathAnimator.SetTrigger("death");
+                    _timeController.addEnergy();
                 }
             }
 
@@ -62,6 +71,7 @@ public class healthSystem : MonoBehaviour
         if (Health < MaxHealth)
         {
             Health += heal;
+            minusHealth.PlusHealth();
         }
         if (Health > MaxHealth)
         {

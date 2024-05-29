@@ -9,19 +9,23 @@ public class AttackSystem : MonoBehaviour
 	GameObjectPool pool;
 	[SerializeField] int objectIndex;
 	public int bulletsInClip = 5;
+	public int maxBulletsInClip = 6;
 	[SerializeField] Transform shootingPoint;
 
 	AudioSource audioSource;
 	[SerializeField] AudioClip click;
 	[SerializeField] AudioClip Shoot;
-
+	[SerializeField] AudioClip reloadSound;
 
 
 	[SerializeField] float noiseRadius=20;
 	[SerializeField] LayerMask enemyLayer;
 
+	bool isReloading;
+
 	private void Start()
 	{
+		bulletsInClip = maxBulletsInClip;
 		pool = FindObjectOfType<GameObjectPool>();
 		audioSource = GetComponent<AudioSource>();
 	}
@@ -32,10 +36,10 @@ public class AttackSystem : MonoBehaviour
 		{
 			shooting();
 		}
-		if (Input.GetKeyDown(KeyCode.Mouse1))
+
+		if (!isReloading)
 		{
-			//reload
-			Debug.Log("Reload");
+			reloadGun();
 		}
 	}
 	private void shooting()
@@ -74,6 +78,25 @@ public class AttackSystem : MonoBehaviour
 			if (item.GetComponent<topDownAI>() != null)
 			{
 				item.GetComponent<topDownAI>().heardNoise();
+			}
+		}
+	}
+	void reloadGun()
+	{
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			if (bulletsInClip < maxBulletsInClip)
+			{
+				audioSource.PlayOneShot(reloadSound);
+				isReloading = true;
+				StartCoroutine(reload());
+
+				IEnumerator reload()
+				{
+					yield return new WaitForSeconds(1f);
+					bulletsInClip = maxBulletsInClip;
+					isReloading = false;
+				}
 			}
 		}
 	}

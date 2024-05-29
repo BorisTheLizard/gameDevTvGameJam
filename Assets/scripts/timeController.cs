@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
+using UnityEngine.Audio;
 
 public class timeController : MonoBehaviour
 {
@@ -11,6 +12,18 @@ public class timeController : MonoBehaviour
 	[SerializeField] Volume slowTimeEffect;
 	[SerializeField] float effectChangeSpeed = 0.5f;
 	public bool GamePaused = false;
+
+	public float energy;
+	public float MaxEnergy=100f;
+
+	AudioMixer mixer;
+	[SerializeField] audioControl _audioControl;
+
+	private void Start()
+	{
+		energy = MaxEnergy;
+		mixer = _audioControl.mixer;
+	}
 
 	private void Update()
 	{
@@ -33,6 +46,14 @@ public class timeController : MonoBehaviour
 	{
 		if (isSlowTime)
 		{
+			energy-= 15 * Time.deltaTime;
+			mixer.SetFloat("sfxPitch", Time.timeScale = 0.3f);
+			if (energy <= 0)
+			{
+				energy = 0;
+				isSlowTime = false;
+				setTime(1f);
+			}
 			//effect
 			if (slowTimeEffect.weight < 1)
 			{
@@ -47,6 +68,7 @@ public class timeController : MonoBehaviour
 				slowTimeEffect.weight = Mathf.Lerp(slowTimeEffect.weight, 0, effectChangeSpeed);
 				mainEffect.weight = Mathf.Lerp(mainEffect.weight, 1, effectChangeSpeed);
 			}
+			mixer.SetFloat("sfxPitch", Time.timeScale = 1f);
 		}
 	}
 
@@ -61,5 +83,16 @@ public class timeController : MonoBehaviour
 			GamePaused = !true;
 		}
 		Time.timeScale = timeToSet;
+	}
+	public void addEnergy()
+	{
+		if (energy < MaxEnergy)
+		{
+			energy += 5;
+		}
+		if (energy > MaxEnergy)
+		{
+			energy = MaxEnergy;
+		}
 	}
 }
