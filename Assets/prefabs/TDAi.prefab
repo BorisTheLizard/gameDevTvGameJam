@@ -86,7 +86,7 @@ MonoBehaviour:
   idle: []
   attak: []
   death: []
-  maxTimeToWait: 0.3
+  maxTimeToWait: 0.55
   isPatroling: 1
   patrollingPoint: {fileID: 8916171802600419099}
   shootingPoint: {fileID: 4332402384513795315}
