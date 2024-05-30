@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 315537192192350620}
   - component: {fileID: 4148272528343241583}
   - component: {fileID: 2464082508319279648}
+  - component: {fileID: 3134718286795874220}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -326,6 +327,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 9009420173386147591}
   chaseScene: 0
+--- !u!114 &3134718286795874220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157360222682985290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b53d742188a594eb5149150cdcb053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshair: {fileID: 2800000, guid: 5af16369b1323ed41840822df3fa1ab4, type: 3}
 --- !u!1 &743145482236568127
 GameObject:
   m_ObjectHideFlags: 0
