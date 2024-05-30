@@ -137,9 +137,12 @@ MonoBehaviour:
   deathAnimator: {fileID: 830461161268843368}
   _audioSource: {fileID: 4973116889086232626}
   deathSounds:
-  - {fileID: 8300000, guid: 8329cf74c1d889a4e9cdb4fe44834abf, type: 3}
-  - {fileID: 8300000, guid: 267f2ecccdc220c43aaeb269ff70fe15, type: 3}
-  - {fileID: 8300000, guid: 02a698d81695cc245b33aa57e728226f, type: 3}
+  - {fileID: 8300000, guid: 21091a8f60e097a46836b0dae24f4f4a, type: 3}
+  - {fileID: 8300000, guid: aade66984dc14e646a5ec1a4d4a16d34, type: 3}
+  - {fileID: 8300000, guid: a15eea1ae8ee7f544898b5e0b76998a2, type: 3}
+  coocedScreen: {fileID: 0}
+  isTopDown: 0
+  notRunner: 0
 --- !u!82 &4973116889086232626
 AudioSource:
   m_ObjectHideFlags: 0
@@ -161,7 +164,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 35
+  MaxDistance: 45
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0

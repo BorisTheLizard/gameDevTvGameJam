@@ -9,6 +9,10 @@ public class chaseDamageTaker : MonoBehaviour
 	[SerializeField] Animator anim;
 	GameObjectPool pool;
 	[SerializeField] CinemachineImpulseSource _source;
+	[SerializeField] GameObject hitImpact;
+	[SerializeField] AudioSource _audioSource;
+	[SerializeField] AudioClip collisionClip;
+
 
 	private void Awake()
 	{
@@ -22,6 +26,10 @@ public class chaseDamageTaker : MonoBehaviour
 			_source.GenerateImpulse();
 			_health.TakeDamage(1);
 			other.GetComponent<destroyObjectScript>().destroyIt();
+			anim.SetTrigger("collision");
+			hitImpact.SetActive(true);
+			StartCoroutine(disableHitImpact());
+			_audioSource.PlayOneShot(collisionClip);
 
 			GameObject destrObjEffect = pool.GetObject(1);
 			if (destrObjEffect != null)
@@ -34,6 +42,11 @@ public class chaseDamageTaker : MonoBehaviour
 			other.transform.gameObject.GetComponent<destroyObjectScript>().gameObject.GetComponent<BoxCollider>().enabled = false;
 
 		}
+	}
+	IEnumerator disableHitImpact()
+	{
+		yield return new WaitForSeconds(1);
+		hitImpact.SetActive(false);
 	}
 
 }

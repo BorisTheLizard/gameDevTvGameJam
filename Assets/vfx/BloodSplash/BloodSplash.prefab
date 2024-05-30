@@ -9821,6 +9821,7 @@ GameObject:
   - component: {fileID: 424327753516568588}
   - component: {fileID: 3375842662854654883}
   - component: {fileID: 5707871942093856174}
+  - component: {fileID: 8522016047031919889}
   m_Layer: 0
   m_Name: BloodSplash
   m_TagString: Untagged
@@ -14712,7 +14713,7 @@ AudioSource:
   m_GameObject: {fileID: 424327753516568589}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -7366180232476275623, guid: a8f932b4417eab145aee2c24e80808a3, type: 2}
+  OutputAudioMixerGroup: {fileID: -6009959246904181776, guid: ec58230e4415f1f4085ea11f8fb55644, type: 2}
   m_audioClip: {fileID: 8300000, guid: 50957a2e1befa2b4ab5ddba441de540b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -14724,9 +14725,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 60
+  MaxDistance: 45
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -14812,3 +14813,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeToWait: 35
+--- !u!114 &8522016047031919889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424327753516568589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d28c1354c39fc994cb13ed988db3b23c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip:
+  - {fileID: 8300000, guid: b67eaeca9f4471a4da42511caa1bf0e7, type: 3}
+  - {fileID: 8300000, guid: 1759fd060d85cb34bba1641e927aed5c, type: 3}
+  - {fileID: 8300000, guid: 3561a2d55e1524c4b9e7c903c842953e, type: 3}
