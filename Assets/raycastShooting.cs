@@ -20,6 +20,8 @@ public class raycastShooting : MonoBehaviour
     bool isReloading;
     CinemachineImpulseSource impulse;
 
+    [SerializeField] GameObject targetPoint;
+
     private void Awake()
     {
         pool = FindObjectOfType<GameObjectPool>();
@@ -32,10 +34,12 @@ public class raycastShooting : MonoBehaviour
 
     void Update()
     {
+        SetTargetPointPosition();
+
         if (Input.GetMouseButtonDown(0)) // Check if left mouse button is clicked
         {
 
-            if (bulletsInClip > 0)
+            if (bulletsInClip > 0 && !isReloading)
             {
                 Shoot();
             }
@@ -59,8 +63,6 @@ public class raycastShooting : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, shootingRange, ~ignoreLayerMask))
         {
-            Debug.Log("Hit: " + hit.collider.name);
-
             if (hit.collider.gameObject.tag == "destr")
 			{
                 GameObject destrObjEffect = pool.GetObject(1);
@@ -101,10 +103,28 @@ public class raycastShooting : MonoBehaviour
 
                 IEnumerator reload()
                 {
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(0.7f);
                     bulletsInClip = maxBulletsInClip;
                     isReloading = false;
                 }
+            }
+        }
+    }
+
+    void SetTargetPointPosition()
+    {
+        // Perform the raycast
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        // Debug the ray in the scene view
+        Debug.DrawRay(ray.origin, ray.direction * 999, Color.red);
+
+        if (Physics.Raycast(ray, out hit, 999))
+        {
+            if (targetPoint != null)
+            {
+                targetPoint.transform.position = hit.point;
             }
         }
     }

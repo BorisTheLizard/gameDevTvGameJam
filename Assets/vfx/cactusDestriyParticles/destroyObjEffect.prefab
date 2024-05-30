@@ -4905,7 +4905,7 @@ MonoBehaviour:
   radius: 7
   destructableLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
   power: 10
 --- !u!114 &3508366098522799162
 MonoBehaviour:

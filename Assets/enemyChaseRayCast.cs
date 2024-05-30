@@ -37,4 +37,9 @@ IEnumerator notJumping()
         yield return new WaitForSeconds(0.5f);
         isJumping = false;
 	}
+
+    public void jumpOnTrainAnim()
+	{
+
+	}
 }

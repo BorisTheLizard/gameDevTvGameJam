@@ -30,7 +30,7 @@ public class destroyObjectScript : MonoBehaviour
 
 			IEnumerator countTosettle()
 			{
-				yield return new WaitForSeconds(3.5f);
+				yield return new WaitForSeconds(7f);
 				foreach (var item in destructParts)
 				{
 					item.GetComponent<Rigidbody>().isKinematic = !false;

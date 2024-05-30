@@ -30,30 +30,38 @@ public class playerController : MonoBehaviour
     private bool groundedPlayer;
     private float gravityValue = -100f;
 
+    [SerializeField] AudioSource _Stepsource;
+    [SerializeField] AudioClip[] _Stepclip;
+    float stepCoolDown;
+    [SerializeField] float maxStepCooldown = 0.2f;
+
     void Start()
     {
         mainCamera = FindObjectOfType<Camera>();
         cc = GetComponent<CharacterController>();
         _timeController = FindObjectOfType<timeController>();
-    }
-
-	private void FixedUpdate()
-	{
-        if (!_timeController.GamePaused)
-        {
-            CalculateSpeed();
-        }
+        stepCoolDown = maxStepCooldown;
     }
 
 	void Update()
     {
+        if (!_timeController.GamePaused)
+        {
+            CalculateSpeed();
+        }
+
         Aim();
         PlayerMove();
 
-
-		animationController();
+		if (CCSpeed > 0.05)
+		{
+			if (Time.time > stepCoolDown)
+			{
+                stepCoolDown = Time.time + maxStepCooldown;
+                playStep();
+			}
+		}
     }
-
     public void PlayerMove()
     {
 
@@ -80,7 +88,6 @@ public class playerController : MonoBehaviour
             }
 		}
     }
-
     private void Aim()
 	{
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -112,10 +119,6 @@ public class playerController : MonoBehaviour
         //trail.enabled = false;
     }
 
-    void animationController()
-	{
-       
-	}
     void speedController()
 	{
 		if (isDashing)
@@ -127,7 +130,6 @@ public class playerController : MonoBehaviour
             moveSpeed = 10;
 		}
 	}
-
     private void CalculateSpeed()
     {
         CCSpeed = Mathf.Lerp(CCSpeed, (transform.position - lastPosition).magnitude / Time.unscaledDeltaTime, 6f);
@@ -135,7 +137,6 @@ public class playerController : MonoBehaviour
 
         anim.SetFloat("moveSpeed", CCSpeed);
     }
-
     void DashAnim()
 	{
         if(move.x>0.1f && move.z ==0)
@@ -154,5 +155,10 @@ public class playerController : MonoBehaviour
         {
             anim.SetTrigger("backDash");
         }
+    }
+    public void playStep()
+    {
+        _Stepsource.clip = _Stepclip[Random.Range(0, _Stepclip.Length)];
+        _Stepsource.Play();
     }
 }

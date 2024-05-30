@@ -106,7 +106,8 @@ public class healthSystem : MonoBehaviour
                     anim.enabled = false;
                     anim.gameObject.SetActive(false);
                     deathAnimator.gameObject.SetActive(true);
-                    deathAnimator.SetTrigger("death");
+                    string animation = "death" + Random.Range(1, 4);
+                    deathAnimator.SetTrigger(animation);
                     _timeController.addEnergy();
                 }
             }

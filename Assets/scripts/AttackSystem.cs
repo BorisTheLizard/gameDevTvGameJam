@@ -46,7 +46,7 @@ public class AttackSystem : MonoBehaviour
 	}
 	private void shooting()
 	{
-		if (Time.time > shootingSpeed)
+		if (Time.time > shootingSpeed && !isReloading)
 		{
 			if (bulletsInClip > 0)
 			{
@@ -96,7 +96,7 @@ public class AttackSystem : MonoBehaviour
 
 				IEnumerator reload()
 				{
-					yield return new WaitForSeconds(1f);
+					yield return new WaitForSeconds(0.5f);
 					bulletsInClip = maxBulletsInClip;
 					isReloading = false;
 				}
