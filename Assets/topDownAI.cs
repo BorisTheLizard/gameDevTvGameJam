@@ -22,6 +22,7 @@ public class topDownAI : MonoBehaviour
     [SerializeField] AudioClip[] idle;
     [SerializeField] AudioClip[] attak;
     public AudioClip[] death;
+    [SerializeField] float attackDistance = 14;
 
     GameObject player;
 
@@ -94,7 +95,7 @@ public class topDownAI : MonoBehaviour
                 float distance = Vector3.Distance(transform.position, player.transform.position);
                 agent.SetDestination(player.transform.position);
 
-                if (fov.seePlayer && distance < 14)
+                if (fov.seePlayer && distance < attackDistance)
                 {
                     currentState = "attack";
                 }

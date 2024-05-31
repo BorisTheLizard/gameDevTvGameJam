@@ -13,7 +13,7 @@ public class fieldOfView : MonoBehaviour
 	public bool seePlayer = false;
 
 
-	private void Start()
+	private void OnEnable()
 	{
 		StartCoroutine(findTargetsWithDelay(.3f));
 	}
