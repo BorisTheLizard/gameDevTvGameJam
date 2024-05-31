@@ -19,8 +19,8 @@ public class topDownAI : MonoBehaviour
 
     [Header("Sounds")]
     [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioClip[] idle;
-    [SerializeField] AudioClip[] attak;
+    //[SerializeField] AudioClip[] idle;
+    [SerializeField] AudioClip shoot;
     public AudioClip[] death;
     [SerializeField] float attackDistance = 14;
 
@@ -148,6 +148,8 @@ public class topDownAI : MonoBehaviour
         if (Time.time > timeToWait)
         {
             timeToWait = Time.time + maxTimeToWait;
+            audioSource.pitch = Random.Range(1.1f, 1.4f);
+            audioSource.PlayOneShot(shoot);
             GameObject obj = pool.GetObject(0);
             if (obj != null)
             {

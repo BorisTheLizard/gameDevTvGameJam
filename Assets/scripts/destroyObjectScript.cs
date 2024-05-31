@@ -8,6 +8,13 @@ public class destroyObjectScript : MonoBehaviour
 	[SerializeField] GameObject[] destructParts;
 	[SerializeField] GameObject[] bodyPart;
 	bool isCounting;
+	public bool isExplosive;
+	GameObjectPool pool;
+
+	private void Awake()
+	{
+		pool = FindObjectOfType<GameObjectPool>();
+	}
 
 	public void destroyIt()
 	{
@@ -23,6 +30,7 @@ public class destroyObjectScript : MonoBehaviour
 			item.GetComponent<Rigidbody>().useGravity = true;
 		}
 
+
 		if (!isCounting)
 		{
 			isCounting = true;
@@ -30,6 +38,16 @@ public class destroyObjectScript : MonoBehaviour
 
 			IEnumerator countTosettle()
 			{
+				if (isExplosive)
+				{
+					GameObject destrObjEffect = pool.GetObject(4);
+					if (destrObjEffect != null)
+					{
+						destrObjEffect.transform.position = transform.position;
+						destrObjEffect.SetActive(true);
+					}
+				}
+
 				yield return new WaitForSeconds(7f);
 				foreach (var item in destructParts)
 				{

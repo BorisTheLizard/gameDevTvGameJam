@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 1
-  timeToWait: 2
+  timeToWait: 1
   bulletSpeed: 50
 --- !u!54 &4841082785724032014
 Rigidbody:

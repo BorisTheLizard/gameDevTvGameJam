@@ -82,10 +82,10 @@ MonoBehaviour:
   fov: {fileID: 2612342875283288889}
   anim: {fileID: 4733181137519956630}
   currentState: idle
-  audioSource: {fileID: 0}
-  idle: []
-  attak: []
+  audioSource: {fileID: 4973116889086232626}
+  shoot: {fileID: 8300000, guid: d064d21b5e22d934e82d95e778f47afa, type: 3}
   death: []
+  attackDistance: 14
   maxTimeToWait: 0.55
   isPatroling: 1
   patrollingPoint: {fileID: 8916171802600419099}

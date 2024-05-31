@@ -21,6 +21,7 @@ public class raycastShooting : MonoBehaviour
     CinemachineImpulseSource impulse;
 
     [SerializeField] GameObject targetPoint;
+    [SerializeField] AudioClip shootingSound;
 
     private void Awake()
     {
@@ -57,7 +58,7 @@ public class raycastShooting : MonoBehaviour
         impulse.GenerateImpulse();
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-
+        audioSource.PlayOneShot(shootingSound);
         // Draw the ray in the scene view for debugging purposes
         Debug.DrawRay(Camera.main.transform.position, ray.direction * shootingRange, Color.red, 2f);
 

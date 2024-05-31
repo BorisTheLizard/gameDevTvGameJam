@@ -26,6 +26,7 @@ public class chaseDamageTaker : MonoBehaviour
 			_source.GenerateImpulse();
 			_health.TakeDamage(1);
 			other.GetComponent<destroyObjectScript>().destroyIt();
+			other.GetComponent<destroyObjectScript>().gameObject.GetComponent<BoxCollider>().enabled = false;
 			anim.SetTrigger("collision");
 			hitImpact.SetActive(true);
 			StartCoroutine(disableHitImpact());

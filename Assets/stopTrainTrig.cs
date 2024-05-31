@@ -10,6 +10,8 @@ public class stopTrainTrig : MonoBehaviour
 	[SerializeField] BoxCollider trigger;
 	[SerializeField] AudioClip stopTrainClip;
 	[SerializeField] AudioSource _audiosource;
+	[SerializeField] GameObject trainSoundHolder;
+
 
 	bool stopShaking = false;
 
@@ -42,8 +44,9 @@ public class stopTrainTrig : MonoBehaviour
 	}
 	IEnumerator disableAudiosource()
 	{
-		yield return new WaitForSeconds(10);
-		_audiosource.gameObject.SetActive(true);
+		yield return new WaitForSeconds(8);
+		_audiosource.gameObject.SetActive(!true);
+		trainSoundHolder.SetActive(false);
 		this.enabled = false;
 	}
 }
