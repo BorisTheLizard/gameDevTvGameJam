@@ -9,6 +9,8 @@ public class enemyChaseRayCast : MonoBehaviour
     [SerializeField] Transform castTransform;
     [SerializeField] LayerMask obstaclesLayer;
     public bool isJumping = false;
+    [SerializeField] GameObject enemyModel;
+    [SerializeField] GameObject jumpModel;
 
     void Update()
     {
@@ -30,9 +32,14 @@ public class enemyChaseRayCast : MonoBehaviour
             anim.SetTrigger("jump");
             isJumping = true;
             StartCoroutine(notJumping());
+
+			if (hit.collider.gameObject.tag == "end")
+			{
+                jumpOnTrainAnim();
+			}
         }
     }
-IEnumerator notJumping()
+    IEnumerator notJumping()
 	{
         yield return new WaitForSeconds(0.5f);
         isJumping = false;
@@ -40,6 +47,7 @@ IEnumerator notJumping()
 
     public void jumpOnTrainAnim()
 	{
-
+        enemyModel.SetActive(false);
+        jumpModel.SetActive(true);
 	}
 }

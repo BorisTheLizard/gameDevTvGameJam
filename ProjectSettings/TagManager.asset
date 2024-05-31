@@ -8,6 +8,7 @@ TagManager:
   - destr
   - obstacles
   - enemy
+  - end
   layers:
   - Default
   - TransparentFX
