@@ -27,6 +27,8 @@ public class healthCheck : MonoBehaviour
 	{
 		isEnded = true;
 		yield return new WaitForSeconds(3);
+		player.GetComponent<AttackSystem>().enabled = false;
+		playerSource.pitch = 1;
 		playerSource.PlayOneShot(lastClip);
 		yield return new WaitForSeconds(2);
 		fadeIn.SetActive(true);

@@ -2619,6 +2619,81 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3751292886221683033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5620658950171156627}
+  - component: {fileID: 7960973041527216618}
+  - component: {fileID: 1461050200761294217}
+  m_Layer: 5
+  m_Name: filler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5620658950171156627
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3751292886221683033}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5148308120079246480}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7960973041527216618
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3751292886221683033}
+  m_CullTransparentMesh: 1
+--- !u!114 &1461050200761294217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3751292886221683033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 3d866accf7ed72a439af2b47da2d708a, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3773139027655254472
 GameObject:
   m_ObjectHideFlags: 0
@@ -2828,6 +2903,82 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &4255578733436040837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5148308120079246480}
+  - component: {fileID: 2198970545397202948}
+  - component: {fileID: 2405931079625639049}
+  m_Layer: 5
+  m_Name: SuperShot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5148308120079246480
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255578733436040837}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5620658950171156627}
+  m_Father: {fileID: 1791159946339832532}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 728, y: -461}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2198970545397202948
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255578733436040837}
+  m_CullTransparentMesh: 1
+--- !u!114 &2405931079625639049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255578733436040837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 279e7a6cc4724d44a8461241699d6c24, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4271925490324174690
 GameObject:
   m_ObjectHideFlags: 0
@@ -4663,11 +4814,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\"You can\u2019t make an omelette without cracking a few eggs\"\n-Elizabeth
-    Picado\n\n\n\n\nCREDITS\n\nMADE WITH LOVE BY:\n\nGAME DESIGN, PROGRAMMING, SOUND
-    DESIGN, 3D ART, ANIMATIONS, LEVEL DESIGN\n-ARTEM LAGUTIN\nsweettoos400Qgmail.com\nhttps://danko-entertainment.itch.io\n\n\n\n\n3D
-    Environment Artist, lighting, post process\nElizabeth Picado\nhttps://epicado.itch.io/\n\n\n\n\n3D
-    Artist \nAbdul Hafiz \nhttps://abdhaf.artstation.com/\n\n\n\nTHANK YOU FOR PLAYING
-    OUR GAME JAM PROJECT!\n"
+    Picado\n\n\n\n\nCREDITS\n\nMADE WITH LOVE BY:\n\nArtem Lagutin\n\nGAME DESIGN,
+    PROGRAMMING, SOUND DESIGN, 3D ART, ANIMATIONS, LEVEL DESIGN\n\nsweettoos400Qgmail.com\nhttps://danko-entertainment.itch.io\n\n\n\nElizabeth
+    Picado\n\n3D Environment Artist, lighting, post process\n\nhttps://epicado.itch.io/\n\n\n\nAbdul
+    Hafiz \n\n3D Artist \n\nhttps://abdhaf.artstation.com/\n\n\n\nTHANK YOU FOR PLAYING
+    OUR GAME JAM PROJECT!\n\n\n\n\n\n\n6/2/2024\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a015b86262e8dd24eac2667d840e06f8, type: 2}
   m_sharedMaterial: {fileID: 5469211643568755647, guid: a015b86262e8dd24eac2667d840e06f8, type: 2}
@@ -7103,6 +7254,7 @@ RectTransform:
   - {fileID: 8609471770353597193}
   - {fileID: 7880196750722665222}
   - {fileID: 1944968477076750526}
+  - {fileID: 5148308120079246480}
   m_Father: {fileID: 6977863067519870114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

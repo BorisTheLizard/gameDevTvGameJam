@@ -11,6 +11,11 @@ public class projectileDamage : MonoBehaviour
     GameObjectPool pool;
     TrailRenderer trail;
 
+    public bool isSuperBullet;
+    [SerializeField] float searchRadius = 25;
+    public int jumps = 0;
+    [SerializeField] LayerMask enemyLayer;
+
     private void Awake()
     {
         pool = FindObjectOfType<GameObjectPool>();
@@ -19,7 +24,14 @@ public class projectileDamage : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(returnToPoolTimer());
+		if (!isSuperBullet)
+		{
+            StartCoroutine(returnToPoolTimer(1));
+        }
+		else
+		{
+            StartCoroutine(returnToPoolTimer(6));
+        }
     }
     private void OnDisable()
     {
@@ -37,79 +49,185 @@ public class projectileDamage : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "obstacles":
+				if (isSuperBullet)
+				{
+                    bulletJumps();
 
-                GameObject hitImpact = pool.GetObject(2);
+                    GameObject hitImpact = pool.GetObject(2);
 
-                if (hitImpact != null)
-                {
-                    hitImpact.SetActive(false);
-                    hitImpact.transform.position = transform.position;
-                    hitImpact.SetActive(true);
+                    if (hitImpact != null)
+                    {
+                        hitImpact.SetActive(false);
+                        hitImpact.transform.position = transform.position;
+                        hitImpact.SetActive(true);
+                    }
                 }
-                pool.ReturnObject(this.gameObject);
+				else
+				{
+                    GameObject hitImpact = pool.GetObject(2);
+
+                    if (hitImpact != null)
+                    {
+                        hitImpact.SetActive(false);
+                        hitImpact.transform.position = transform.position;
+                        hitImpact.SetActive(true);
+                    }
+                    returntItToPool();
+                }
+
 
                 break;
 
             case "Player":
 
-                //Damage Player
-                other.gameObject.GetComponent<healthSystem>().TakeDamage(damageAmount);
-
-                GameObject PlayerhitImpact = pool.GetObject(3);
-
-                if (PlayerhitImpact != null)
+                if (isSuperBullet)
                 {
-                    PlayerhitImpact.SetActive(false);
-                    PlayerhitImpact.transform.position = transform.position;
-                    PlayerhitImpact.transform.rotation = transform.rotation;
-                    PlayerhitImpact.SetActive(true);
+
+				}
+                else
+				{
+                    other.gameObject.GetComponent<healthSystem>().TakeDamage(damageAmount);
+
+                    GameObject PlayerhitImpact = pool.GetObject(3);
+
+                    if (PlayerhitImpact != null)
+                    {
+                        PlayerhitImpact.SetActive(false);
+                        PlayerhitImpact.transform.position = transform.position;
+                        PlayerhitImpact.transform.rotation = transform.rotation;
+                        PlayerhitImpact.SetActive(true);
+                    }
+
+                    returntItToPool();
                 }
 
-                pool.ReturnObject(this.gameObject);
 
                 break;
 
             case "enemy":
 
-                other.gameObject.GetComponent<healthSystem>().TakeDamage(damageAmount);
-                GameObject PlayerhitImpact1 = pool.GetObject(3);
-
-                if (PlayerhitImpact1 != null)
+                if (isSuperBullet)
                 {
-                    PlayerhitImpact1.SetActive(false);
-                    PlayerhitImpact1.transform.position = transform.position;
-                    PlayerhitImpact1.transform.rotation = transform.rotation;
-                    PlayerhitImpact1.SetActive(true);
+                    other.gameObject.GetComponent<healthSystem>().TakeDamage(2);
+                    bulletJumps();
+                    GameObject hitImpact = pool.GetObject(2);
+
+                    if (hitImpact != null)
+                    {
+                        hitImpact.SetActive(false);
+                        hitImpact.transform.position = transform.position;
+                        hitImpact.SetActive(true);
+                    }
+                }
+				else
+				{
+                    other.gameObject.GetComponent<healthSystem>().TakeDamage(damageAmount);
+
+                    GameObject PlayerhitImpact1 = pool.GetObject(3);
+
+                    if (PlayerhitImpact1 != null)
+                    {
+                        PlayerhitImpact1.SetActive(false);
+                        PlayerhitImpact1.transform.position = transform.position;
+                        PlayerhitImpact1.transform.rotation = transform.rotation;
+                        PlayerhitImpact1.SetActive(true);
+                    }
+
+                    returntItToPool();
                 }
 
-                pool.ReturnObject(this.gameObject);
 
                 break;
 
 
             case "destr":
-                GameObject destrObjEffect = pool.GetObject(1);
-                if (destrObjEffect != null)
+
+                if (isSuperBullet)
                 {
-                    destrObjEffect.SetActive(false);
-                    destrObjEffect.transform.position = transform.position;
-                    destrObjEffect.transform.rotation = transform.rotation;
-                    destrObjEffect.SetActive(true);
+                    other.GetComponent<destroyObjectScript>().destroyIt();
+                    other.GetComponent<destroyObjectScript>().gameObject.GetComponent<BoxCollider>().enabled = false;
+
+                    bulletJumps();
+
+                    GameObject hitImpact = pool.GetObject(2);
+
+                    if (hitImpact != null)
+                    {
+                        hitImpact.SetActive(false);
+                        hitImpact.transform.position = transform.position;
+                        hitImpact.SetActive(true);
+                    }
+                }
+				else
+				{
+                    GameObject destrObjEffect = pool.GetObject(1);
+                    if (destrObjEffect != null)
+                    {
+                        destrObjEffect.SetActive(false);
+                        destrObjEffect.transform.position = transform.position;
+                        destrObjEffect.transform.rotation = transform.rotation;
+                        destrObjEffect.SetActive(true);
+                    }
+
+                    other.GetComponent<destroyObjectScript>().destroyIt();
+                    other.GetComponent<destroyObjectScript>().gameObject.GetComponent<BoxCollider>().enabled = false;
+
+                    returntItToPool();
                 }
 
-                other.GetComponent<destroyObjectScript>().destroyIt();
-                other.GetComponent<destroyObjectScript>().gameObject.GetComponent<BoxCollider>().enabled = false;
-
-                pool.ReturnObject(this.gameObject);
 
                 break;
         }
+
+       
     }
 
-    IEnumerator returnToPoolTimer()
+    IEnumerator returnToPoolTimer(float returnWait)
     {
-        yield return new WaitForSeconds(timeToWait);
+        yield return new WaitForSeconds(returnWait);
         trail.Clear();
+        returntItToPool();
+    }
+
+    void returntItToPool()
+	{
+		if (isSuperBullet)
+		{
+            jumps = 0;
+		}
         pool.ReturnObject(this.gameObject);
+
+    }
+
+    void bulletJumps()
+    {
+        if (jumps < 2)
+        {
+            Collider[] col = Physics.OverlapSphere(transform.position, searchRadius, enemyLayer);
+
+            for (int i = 0; i < col.Length; i++)
+            {
+                if (col[0] != null)
+                {
+                    jumps++;
+                    // Calculate direction to the target
+                    Vector3 direction = col[i].transform.position - transform.position;
+                    direction.y = 0; // Keep direction on the XZ plane
+                    if (direction != Vector3.zero)
+                    {
+                        // Rotate bullet to look at the target
+                        transform.rotation = Quaternion.LookRotation(direction);
+                    }
+
+                    Debug.Log(jumps);
+
+                    break; // Exit the loop after first jump
+                }
+            }
+        }
+        else
+        {
+            returntItToPool();
+        }
     }
 }

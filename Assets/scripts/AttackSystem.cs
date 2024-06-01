@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class AttackSystem : MonoBehaviour
 {
@@ -25,6 +26,11 @@ public class AttackSystem : MonoBehaviour
 
 	bool isReloading;
 
+	public bool isCooldown = false;
+	public float cooldownTime = 10f;
+	private float cooldownTimer = 0f;
+	[SerializeField] Image cooldownImage;
+
 	private void Start()
 	{
 		bulletsInClip = maxBulletsInClip;
@@ -32,11 +38,34 @@ public class AttackSystem : MonoBehaviour
 		audioSource = GetComponent<AudioSource>();
 	}
 
+	private void StartCooldown()
+	{
+		isCooldown = true;
+		cooldownTimer = cooldownTime;
+		StartCoroutine(CooldownRoutine());
+	}
+
+	private IEnumerator CooldownRoutine()
+	{
+		while (cooldownTimer > 0)
+		{
+			cooldownTimer -= Time.deltaTime;
+			cooldownImage.fillAmount = 1 - (cooldownTimer / cooldownTime);
+			yield return null;
+		}
+		isCooldown = false;
+	}
+
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Mouse0))
 		{
 			shooting();
+		}
+
+		if (Input.GetKeyDown(KeyCode.Mouse1))
+		{
+			superShooting();
 		}
 
 		if (!isReloading)
@@ -72,6 +101,68 @@ public class AttackSystem : MonoBehaviour
 			}
 		}
 	}
+
+	private void superShooting()
+	{
+		if (Time.time > shootingSpeed && !isReloading && !isCooldown)
+		{
+			if (bulletsInClip > 0)
+			{
+				//muzzleFlash.Play();
+				_source.GenerateImpulse();
+				shootingSpeed = Time.time + maxShootingSpeed;
+				audioSource.pitch = Random.Range(0.9f, 1.4f);
+				audioSource.PlayOneShot(Shoot);
+				GameObject obj = pool.GetObject(5);
+				if (obj != null)
+				{
+					obj.SetActive(false);
+					obj.transform.position = shootingPoint.position;
+					obj.transform.rotation = shootingPoint.rotation;
+					obj.SetActive(true);
+				}
+				bulletsInClip--;
+				makeNoise();
+
+				// Start cooldown after shooting
+				StartCooldown();
+			}
+			else
+			{
+				audioSource.PlayOneShot(click);
+			}
+		}
+	}
+
+	/*	private void superShooting()
+		{
+			if (Time.time > shootingSpeed && !isReloading && //new VAR HERE for cooldown)
+			{
+				if (bulletsInClip > 0)
+				{
+					//muzzleFlash.Play();
+					_source.GenerateImpulse();
+					shootingSpeed = Time.time + maxShootingSpeed;
+					audioSource.pitch = Random.Range(0.9f, 1.4f);
+					audioSource.PlayOneShot(Shoot);
+					GameObject obj = pool.GetObject(5);
+					if (obj != null)
+					{
+						obj.SetActive(false);
+						obj.transform.position = shootingPoint.position;
+						obj.transform.rotation = shootingPoint.rotation;
+						obj.SetActive(true);
+					}
+					bulletsInClip--;
+					makeNoise();
+				}
+				else
+				{
+					audioSource.PlayOneShot(click);
+				}
+			}
+		}*/
+
 	private void makeNoise()
 	{
 		Collider[] col = Physics.OverlapSphere(transform.position, noiseRadius, enemyLayer);

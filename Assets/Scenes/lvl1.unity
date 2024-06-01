@@ -3951,6 +3951,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1556321726888697652, guid: b35c028d61e85594cbbad4d53333c306, type: 3}
   m_PrefabInstance: {fileID: 80010662}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &81082901 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1461050200761294217, guid: c7cf28c754b09aa448f5eb0d6824c145, type: 3}
+  m_PrefabInstance: {fileID: 1419676266663544786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &89390983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77459,6 +77470,7 @@ MonoBehaviour:
   - {fileID: 8893215805476266325, guid: f175826a082035741a88a7d493153330, type: 3}
   - {fileID: 424327753516568589, guid: 8032a573a76ed8b46bf7b5bef6f72613, type: 3}
   - {fileID: 4826826183544916714, guid: 278f72964807bc048848983c6589c5a8, type: 3}
+  - {fileID: 5719632858514457931, guid: 834fd80183b97d04197e81b6fed436c0, type: 3}
   poolSize: 150
 --- !u!4 &1872274387
 Transform:
@@ -88076,6 +88088,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerTD
       objectReference: {fileID: 0}
+    - target: {fileID: 3839163429547281080, guid: 9ae9948be9d3f53448976daa1d3bb97e, type: 3}
+      propertyPath: cooldownTime
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3839163429547281080, guid: 9ae9948be9d3f53448976daa1d3bb97e, type: 3}
+      propertyPath: cooldownImage
+      value: 
+      objectReference: {fileID: 81082901}
     - target: {fileID: 4153799089995488855, guid: 9ae9948be9d3f53448976daa1d3bb97e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 234.6

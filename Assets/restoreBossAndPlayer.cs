@@ -17,6 +17,7 @@ public class restoreBossAndPlayer : MonoBehaviour
 		player.GetComponent<playerController>().moveSpeed = 10;
 		cutscen.SetActive(false);
 		cutScreen.SetActive(false);
+		player.GetComponent<AttackSystem>().isCooldown = false;
 	}
 
 	private void Update()
