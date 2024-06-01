@@ -516,6 +516,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3db764d987b585147a1030065fcbb21e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 90538e5a4b7e2904f8024a0600dccac8, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 3db764d987b585147a1030065fcbb21e, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ede00c8b57c225478f848e34dc75558, type: 2}
     - target: {fileID: 919132149155446097, guid: 3db764d987b585147a1030065fcbb21e, type: 3}
       propertyPath: m_Name
       value: cowboyHat
