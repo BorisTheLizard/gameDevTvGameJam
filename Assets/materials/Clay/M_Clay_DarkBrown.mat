@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Clay_DarkBrown
   m_Shader: {fileID: -6465566751694194690, guid: 5639f4cb1455abd4eb1748f9046bc2fa, type: 3}
-  m_Parent: {fileID: 2100000, guid: 90538e5a4b7e2904f8024a0600dccac8, type: 2}
+  m_Parent: {fileID: 2100000, guid: f339e6af6d55e7840a9abec8f39a7d17, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
