@@ -17506,6 +17506,7 @@ MonoBehaviour:
   anim: {fileID: 335473651}
   timeLine: {fileID: 709019217}
   fadeIn: {fileID: 2026263309}
+  book: {fileID: 777735311}
   _sm: {fileID: 464361648}
 --- !u!224 &464361668 stripped
 RectTransform:
@@ -71882,6 +71883,7 @@ MonoBehaviour:
   anim: {fileID: 768280169}
   timeLine: {fileID: 709019217}
   fadeIn: {fileID: 2026263309}
+  book: {fileID: 0}
   _sm: {fileID: 3347521754148404196}
 --- !u!114 &1426934488378127283
 MonoBehaviour:
