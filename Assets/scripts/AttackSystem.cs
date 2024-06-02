@@ -30,12 +30,14 @@ public class AttackSystem : MonoBehaviour
 	public float cooldownTime = 10f;
 	private float cooldownTimer = 0f;
 	[SerializeField] Image cooldownImage;
+	GameObject superShotReady;
 
 	private void Start()
 	{
 		bulletsInClip = maxBulletsInClip;
 		pool = FindObjectOfType<GameObjectPool>();
 		audioSource = GetComponent<AudioSource>();
+		superShotReady = cooldownImage.transform.GetChild(0).gameObject;
 	}
 
 	private void StartCooldown()
@@ -54,6 +56,7 @@ public class AttackSystem : MonoBehaviour
 			yield return null;
 		}
 		isCooldown = false;
+		superShotReady.SetActive(true);
 	}
 
 	private void Update()
@@ -131,6 +134,7 @@ public class AttackSystem : MonoBehaviour
 			{
 				audioSource.PlayOneShot(click);
 			}
+			superShotReady.SetActive(false);
 		}
 	}
 
