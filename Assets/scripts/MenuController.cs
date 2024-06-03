@@ -10,7 +10,8 @@ public class MenuController : MonoBehaviour
 	[SerializeField] GameObject settingsScreenHolder;
 	[SerializeField] GameObject gameplayUi;
 	[SerializeField] timeController _timeController;
-	private bool inMenu = false;
+	[SerializeField] pauseMenuButtons pb;
+	//private bool inMenu = false;
 	public bool isMainSreen;
 
 	public void openSettings()
@@ -20,7 +21,7 @@ public class MenuController : MonoBehaviour
 		if (!isMainSreen)
 		{
 			gameplayUi.SetActive(false);
-			timeController();
+			//timeController();
 		}
 		else
 		{
@@ -35,15 +36,18 @@ public class MenuController : MonoBehaviour
 		if (!isMainSreen)
 		{
 			gameplayUi.SetActive(true);
-			timeController();
+			_timeController.setTime(1);
+			pb.gameplayMenuIsopen = false;
+			//timeController();
 		}
 		else
 		{
 			mainMenuHolder.SetActive(!false);
+			
 		}
 	}
 
-	private void timeController()
+/*	private void timeController()
 	{
 		if (!inMenu)
 		{
@@ -62,5 +66,5 @@ public class MenuController : MonoBehaviour
 
 			_timeController.setTime(1);
 		}
-	}
+	}*/
 }

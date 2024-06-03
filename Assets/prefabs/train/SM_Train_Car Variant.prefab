@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7990429711456528487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2303889608391180311}
+  - component: {fileID: 2226414862261835758}
+  - component: {fileID: 1695002346669966750}
+  m_Layer: 3
+  m_Name: Cube
+  m_TagString: ground
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2303889608391180311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7990429711456528487}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
+  m_LocalScale: {x: 34.801083, y: 1, z: 14.019363}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6125146941061533020}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &2226414862261835758
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7990429711456528487}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1695002346669966750
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7990429711456528487}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 0.99999994}
+  m_Center: {x: 3.637979e-12, y: 0, z: 0.00003051757}
 --- !u!1001 &7161186868970248604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,6 +202,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3918484845673764032, guid: 4cbb2260502adaf47a5f1fc61b642397, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.794
+      objectReference: {fileID: 0}
     - target: {fileID: 4826159194428864256, guid: 4cbb2260502adaf47a5f1fc61b642397, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -158,7 +224,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3918484845673764032, guid: 4cbb2260502adaf47a5f1fc61b642397, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2303889608391180311}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -1041271067201130365, guid: 4cbb2260502adaf47a5f1fc61b642397, type: 3}
       insertIndex: -1
@@ -219,7 +288,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 23.506805, y: 0.378685, z: 3.3417273}
   m_Center: {x: -0.00000047683716, y: 0.000000037252903, z: 0}
@@ -276,6 +345,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6210138514870568789, guid: 4cbb2260502adaf47a5f1fc61b642397, type: 3}
+--- !u!4 &6125146941061533020 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3918484845673764032, guid: 4cbb2260502adaf47a5f1fc61b642397, type: 3}
+  m_PrefabInstance: {fileID: 7161186868970248604}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7303949816447753415 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8773730961489918629, guid: 4cbb2260502adaf47a5f1fc61b642397, type: 3}

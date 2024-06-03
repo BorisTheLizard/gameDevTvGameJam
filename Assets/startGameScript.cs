@@ -26,4 +26,9 @@ public class startGameScript : MonoBehaviour
 	{
 		fadeIn.SetActive(true);
 	}
+
+	public void exitGame()
+	{
+		Application.Quit();
+	}
 }
